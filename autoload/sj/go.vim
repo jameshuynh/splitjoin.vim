@@ -47,14 +47,6 @@ function! sj#go#SplitStruct()
   endif
 
   let args = sj#ParseJsonObjectBody(start + 1, end - 1)
-
-  for arg in args
-    if arg !~ '^\k\+\s*:'
-      " this is not really a struct instantiation
-      return 0
-    end
-  endfor
-
   call sj#ReplaceCols(start + 1, end - 1, "\n".join(args, ",\n").",\n")
   return 1
 endfunction
